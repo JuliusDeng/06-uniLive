@@ -1,6 +1,8 @@
 <template>
 	<view class="page">
-		<video src="http://ivi.bupt.edu.cn/hls/cctv1hd.m3u8" autoplay :controls="false" class="flex-1"></video>
+		
+		<video class="flex-1" src="http://ivi.bupt.edu.cn/hls/cctv1hd.m3u8" autoplay :controls="false"></video>
+		
 		<!-- 头部 -->
 		<view style="position: fixed;left: 0;right: 0;" :style="'top:'+statusBarHeight+'px'">
 			<!-- 个人信息|观看详细信息 -->
@@ -40,8 +42,10 @@
 				<view style="width: 520rpx;height: 500rpx;" class="bg-success"></view>
 			</view>
 		</view>
+		
 		<!-- 弹幕 -->
 		<view style="position: fixed;bottom: 120rpx;left: 0;right: 0;width: 520rpx;height: 300rpx;" class="bg-warning"></view>
+		
 		<!-- 底部 -->
 		<view style="position: fixed;left: 0;bottom: 0;right: 0;height: 120rpx;" class="bg-danger"></view>
 		
@@ -52,8 +56,12 @@
 	export default {
 		data() {
 			return {
-				
+				statusBarHeight:0
 			}
+		},
+		onLoad() {
+			let res = uni.getSystemInfoSync()
+			this.statusBarHeight = res.statusBarHeight
 		},
 		methods: {
 			
@@ -62,8 +70,7 @@
 </script>
 
 <style>
-	.page{
-		flex: 1;
-		background-color: #0056B3;
-	}
+.page{
+	flex: 1;
+}
 </style>
